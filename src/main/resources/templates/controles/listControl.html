@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Control de Salud-Listado</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+</head>
+
+<body style="background-color: #E5E7E9">
+
+    <header th:insert="fragments/header :: header-principal"></header>
+
+    <br><br><br>
+    <div class="container col-md-12">
+        <div class="card border-dark">
+            <h4 class="card-header"><strong>Listado del Control de Estudiantes</strong></h4>
+            <div class="card-body">
+                <a class="btn btn-dark" th:href="@{/controles/create}" title="Crear Nuevo Control" role="button"><i
+                        class="fas fa-file" aria-hidden="true"></i> Nuevo Control</a>
+                <hr>
+                <div th:if="${msg!=null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+                <table class="table table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">DNI Estudiante</th>
+                            <th scope="col">Peso</th>
+                            <th scope="col">Talla</th>
+                            <th scope="col">Alergias</th>
+                            <th scope="col">Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="control:${controles}">
+                            <th scope="row" th:text="${control.IDCON}"></th>
+                            <td th:text="${control.estudiante.DNIEST}"></td>
+                            <td th:text="${control.PESCON}"></td>
+                            <td th:text="${control.TALCON}"></td>
+                            <td th:text="${control.ALECON}"></td>
+                            <td>
+                                <a th:href="@{/controles/edit/{id} (id=${control.IDCON})}"
+                                    class="btn btn-success btn-sm" role="button" title="Editar el registro."><i
+                                        class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                                <a th:href="@{/controles/delete/{id} (id=${control.IDCON})}"
+                                    onclick="return confirm('¿Esta seguro?')" class="btn btn-danger btn-sm"
+                                    role="button" title="Eliminar el registro."><i class="fas fa-trash"
+                                        aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+
+    <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
