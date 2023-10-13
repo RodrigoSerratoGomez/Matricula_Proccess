@@ -47,6 +47,13 @@ public class PadresController {
 		attributes.addFlashAttribute("msg","Registro Guardado");
 		return"redirect:/padres/index";
 	}
+
+	@GetMapping("/delete/{id}")
+	public String eliminar(@PathVariable("id") Long idPadres, RedirectAttributes attributes) {
+		servicePadres.eliminar(idPadres);
+		attributes.addFlashAttribute("msg", "Registro Eliminado");
+		return "redirect:/padres/index";
+	}
 	   
 	@GetMapping("/edit/{id}")
 	public String editar(@PathVariable("id") Long idPadres, Model model){

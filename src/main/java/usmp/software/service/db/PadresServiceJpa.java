@@ -36,5 +36,10 @@ public class PadresServiceJpa implements IPadresService {
         }
         return null;
     }
+
+    @Override
+    public void eliminar(Long idPadres) {
+        padresRepo.deleteById(idPadres);
+    }
     
 }

@@ -11,4 +11,6 @@ public interface IPadresService {
     List<Padres> buscarTodas();
 
     Padres buscarPorId(Long idPadres);
+
+    void eliminar(Long idPadres);
 }
