@@ -36,7 +36,7 @@
                             <th scope="col">Grado</th>
                             <th scope="col">Ocupación</th>
                             <th scope="col">Sueldo</th>
-                            <!-- <th scope="col">Operaciones</th> -->
+                            <th scope="col">Operaciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,7 +50,11 @@
                             <td th:text="${padre.GRAINSPAD}"></td>
                             <td th:text="${padre.OCUPAD}"></td>
                             <td th:text="${padre.SUEMENPAD}"></td>
-                           
+                            <td>
+                                <a th:href="@{/padres/edit/{id} (id=${padre.DNIPAD})}" class="btn btn-success btn-sm"
+                                    role="button" title="Editar el registro."><i class="fas fa-pencil-alt"
+                                        aria-hidden="true"></i></a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

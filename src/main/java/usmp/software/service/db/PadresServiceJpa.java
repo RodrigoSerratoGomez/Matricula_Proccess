@@ -1,6 +1,7 @@
 package usmp.software.service.db;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -25,6 +26,15 @@ public class PadresServiceJpa implements IPadresService {
     @Override
     public List<Padres> buscarTodas() {
         return padresRepo.findAll();
-    }    
+    }
+
+    @Override
+    public Padres buscarPorId(Long idPadres) {
+        Optional<Padres> optional = padresRepo.findById(idPadres);
+        if (optional.isPresent()) {
+            return optional.get();
+        }
+        return null;
+    }
     
 }
