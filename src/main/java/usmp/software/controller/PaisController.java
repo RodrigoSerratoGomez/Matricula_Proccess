@@ -49,8 +49,8 @@ public class PaisController {
     }
 
     @GetMapping("/delete/{id}")
-    public String eliminarCat(@PathVariable("id") Long idCategoria, RedirectAttributes attributes) {
-        servicePais.eliminar(idCategoria);
+    public String eliminar(@PathVariable("id") Long idPais, RedirectAttributes attributes) {
+        servicePais.eliminar(idPais);
         attributes.addFlashAttribute("msg", "Registro Eliminado");
         return "redirect:/pais/index";
     }

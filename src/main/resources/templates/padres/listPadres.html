@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Padres-Listado</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+</head>
+
+<body style="background-color: #E5E7E9">
+
+    <header th:insert="~{fragments/header :: header-principal}"></header>
+
+    <br><br><br>
+    <div class="container col-md-12">
+        <div class="card border-dark">
+            <h4 class="card-header"><strong>Listado de Padre o Tutor</strong></h4>
+            <div class="card-body">
+                <a class="btn btn-dark" th:href="@{/padres/create}" title="Crear Nuevo Padre o Tutor" role="button"><i
+                        class="fas fa-file" aria-hidden="true"></i> Nuevo Padre o Tutor</a>
+                <hr>
+                <div th:if="${msg!=null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+                <table class="table table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">DNI</th>
+                            <th scope="col">Nombres</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">Fec. Nacimiento</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">Grado</th>
+                            <th scope="col">Ocupación</th>
+                            <th scope="col">Sueldo</th>
+                            <!-- <th scope="col">Operaciones</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="padre:${padress}">
+                            <th scope="row" th:text="${padre.DNIPAD}"></th>
+                            <td th:text="${padre.NOMPAD}"></td>
+                            <td th:text="${padre.APEPAD}"></td>
+                            <td th:text="${padre.FECNACPAD}"></td>
+                            <td th:text="${padre.CORPAD}"></td>
+                            <td th:text="${padre.DIRPAD}"></td>
+                            <td th:text="${padre.GRAINSPAD}"></td>
+                            <td th:text="${padre.OCUPAD}"></td>
+                            <td th:text="${padre.SUEMENPAD}"></td>
+                           
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+
+    <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

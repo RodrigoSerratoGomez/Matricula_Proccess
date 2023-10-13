@@ -55,7 +55,7 @@ public class ControlController {
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String eliminarIns(@PathVariable("id") Long idControl, RedirectAttributes attributes) {
+	public String eliminar(@PathVariable("id") Long idControl, RedirectAttributes attributes) {
 		serviceControl.eliminar(idControl);
 		attributes.addFlashAttribute("msg", "Registro Eliminado");
 		return "redirect:/controles/index";

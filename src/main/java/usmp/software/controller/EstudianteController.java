@@ -54,7 +54,7 @@ public class EstudianteController {
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String eliminarIns(@PathVariable("id") Long idEstudiante, RedirectAttributes attributes) {
+	public String eliminar(@PathVariable("id") Long idEstudiante, RedirectAttributes attributes) {
 		serviceEstudiante.eliminar(idEstudiante);
 		attributes.addFlashAttribute("msg", "Registro Eliminado");
 		return "redirect:/estudiantes/index";

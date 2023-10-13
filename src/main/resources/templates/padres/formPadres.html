@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Padres-Formulario</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+</head>
+
+<body style="background-color: #E5E7E9">
+
+    <header th:insert="fragments/header :: header-principal"></header>
+
+    <br><br><br>
+    <div class="container col-md-8">
+        <div class="card border-dark m-3">
+            <h4 class="card-header"><strong>Datos del Padre o Tutor</strong></h4>
+            <div class="card-body">
+                <form th:action="@{/padres/save}" method="post" th:object="${padres}">
+                    <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
+                        Por favor corrija los siguientes errores:
+                        <ul>
+                            <li th:each="err:${#fields.errors('*')}" th:text="${err}" />
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="NOMPAD">Nombres</label>
+                                <input type="text" class="form-control" th:field="*{NOMPAD}" id="NOMPAD" name="NOMPAD"
+                                    placeholder="Ingrese Nombres Completos" required="required">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="APEPAD">Apellidos</label>
+                                <input type="text" class="form-control" th:field="*{APEPAD}" id="APEPAD" name="APEPAD"
+                                    placeholder="Ingrese Apellidos Completos" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="DNIPAD">DNI</label>
+                                <input type="text" class="form-control" th:field="*{DNIPAD}" id="DNIPAD" name="DNIPAD"
+                                    placeholder="Ingrese DNI" required="required">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="FECNACPAD">Fecha de Nacimiento</label>
+                                <input type="text" class="form-control" th:field="*{FECNACPAD}" id="FECNACPAD"
+                                    name="FECNACPAD" placeholder="Ingrese en formato dd/mm/aaaa" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="CORPAD">Correo Electronico</label>
+                                <input type="text" class="form-control" th:field="*{CORPAD}" id="CORPAD" name="CORPAD"
+                                    placeholder="Ingrese Correo Personal" required="required">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="DIRPAD">Dirección</label>
+                                <input type="text" class="form-control" th:field="*{DIRPAD}" id="DIRPAD" name="DIRPAD"
+                                    placeholder="Ingrese Direccion de Domicilio" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="GRAINSPAD">Grado de Instrucción</label>
+                                <input type="text" class="form-control" th:field="*{GRAINSPAD}" id="GRAINSPAD"
+                                    name="GRAINSPAD" placeholder="Ingrese su Grado Academico" required="required">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="OCUPAD">Ocupación</label>
+                                <input type="text" class="form-control" th:field="*{OCUPAD}" id="OCUPAD" name="OCUPAD"
+                                    placeholder="Ingrese Ocupación o Carrera Ejercida" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="SUEMENPAD">Sueldo Mensual</label>
+                                <input type="text" class="form-control" th:field="*{SUEMENPAD}" id="SUEMENPAD"
+                                    name="SUEMENPAD" placeholder="Ingrese Monto en Formacio Decimal" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="d-grid gap-2 d-md-block text-center">
+                        <a class="btn btn btn-dark" th:href="@{/padres/index}">Ver Lista</a>
+                        <button type="submit" class="btn btn-dark">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+
+    <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
