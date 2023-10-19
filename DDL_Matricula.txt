@@ -1,0 +1,198 @@
+-- Generado por Oracle SQL Developer Data Modeler 23.1.0.087.0806
+--   en:        2023-10-18 22:10:57 COT
+--   sitio:      Oracle Database 11g
+--   tipo:      Oracle Database 11g
+
+
+
+-- predefined type, no DDL - MDSYS.SDO_GEOMETRY
+
+-- predefined type, no DDL - XMLTYPE
+
+CREATE TABLE control (
+    idcon  INTEGER NOT NULL,
+    feccon VARCHAR2(15 BYTE) NOT NULL,
+    pescon NUMBER(4, 2) NOT NULL,
+    talcon NUMBER(3, 2) NOT NULL,
+    alecon VARCHAR2(200 BYTE),
+    dniest CHAR(8 BYTE) NOT NULL
+);
+
+COMMENT ON COLUMN control.feccon IS
+    'FECHA CUANDO SE REALIZO EL CONTROL';
+
+COMMENT ON COLUMN control.pescon IS
+    'Peso';
+
+COMMENT ON COLUMN control.talcon IS
+    'Talla';
+
+COMMENT ON COLUMN control.alecon IS
+    'Alergias';
+
+ALTER TABLE control ADD CONSTRAINT control_pk PRIMARY KEY ( idcon );
+
+CREATE TABLE estudiante (
+    dniest    CHAR(8 BYTE) NOT NULL,
+    apeest    VARCHAR2(60 BYTE) NOT NULL,
+    nomest    VARCHAR2(60 BYTE) NOT NULL,
+    fecnacest VARCHAR2(15 BYTE) NOT NULL,
+    direst    VARCHAR2(300 BYTE) NOT NULL,
+    lugnacest VARCHAR2(25 BYTE) NOT NULL,
+    aseest    CHAR(2 BYTE),
+    idpais    INTEGER NOT NULL
+);
+
+COMMENT ON COLUMN estudiante.lugnacest IS
+    'Lugar de Nacimiento';
+
+COMMENT ON COLUMN estudiante.aseest IS
+    'SI o NO';
+
+ALTER TABLE estudiante ADD CONSTRAINT estudiante_pk PRIMARY KEY ( dniest );
+
+CREATE TABLE grado (
+    idgrad  INTEGER NOT NULL,
+    nomgrad VARCHAR2(15 BYTE) NOT NULL
+);
+
+ALTER TABLE grado ADD CONSTRAINT grado_pk PRIMARY KEY ( idgrad );
+
+CREATE TABLE matricula (
+    idmat  INTEGER NOT NULL,
+    fecmat VARCHAR2(15 BYTE) NOT NULL,
+    dniest CHAR(8 BYTE) NOT NULL,
+    idgrad INTEGER NOT NULL,
+    idsec  INTEGER NOT NULL
+);
+
+COMMENT ON COLUMN matricula.fecmat IS
+    'FECHA QUE SE GENERÓ LA MATRICULA';
+
+ALTER TABLE matricula ADD CONSTRAINT matricula_pk PRIMARY KEY ( idmat );
+
+CREATE TABLE padres (
+    dnipad    CHAR(8 BYTE) NOT NULL,
+    apepad    VARCHAR2(60 BYTE) NOT NULL,
+    nompad    VARCHAR2(60 BYTE) NOT NULL,
+    fecnacpad VARCHAR2(15 BYTE) NOT NULL,
+    dirpad    VARCHAR2(300 BYTE) NOT NULL,
+    grainspad VARCHAR2(20 BYTE) NOT NULL,
+    ocupad    VARCHAR2(200 BYTE) NOT NULL,
+    corpad    VARCHAR2(100 BYTE) NOT NULL,
+    suemenpad NUMBER(8, 2) NOT NULL
+);
+
+COMMENT ON COLUMN padres.fecnacpad IS
+    'FECHA NACIMIENTO DE APONDERADO';
+
+COMMENT ON COLUMN padres.grainspad IS
+    'GRADO DE INSTRUCCION : PRIMARIA, SECUNDARIA, SUPERIOR';
+
+COMMENT ON COLUMN padres.suemenpad IS
+    'SUELDO MENSUAL';
+
+ALTER TABLE padres ADD CONSTRAINT padres_pk PRIMARY KEY ( dnipad );
+
+CREATE TABLE pais (
+    idpais  INTEGER NOT NULL,
+    nompais VARCHAR2(20 BYTE) NOT NULL
+);
+
+ALTER TABLE pais ADD CONSTRAINT pais_pk PRIMARY KEY ( idpais );
+
+CREATE TABLE parentesco (
+    dniest CHAR(8 BYTE) NOT NULL,
+    dnipad CHAR(8 BYTE) NOT NULL
+);
+
+ALTER TABLE parentesco ADD CONSTRAINT parentesco_pk PRIMARY KEY ( dniest,
+                                                                  dnipad );
+
+CREATE TABLE seccion (
+    idsec  INTEGER NOT NULL,
+    nomsec VARCHAR2(15 BYTE) NOT NULL
+);
+
+ALTER TABLE seccion ADD CONSTRAINT seccion_pk PRIMARY KEY ( idsec );
+
+ALTER TABLE control
+    ADD CONSTRAINT control_estudiante_fk FOREIGN KEY ( dniest )
+        REFERENCES estudiante ( dniest );
+
+ALTER TABLE estudiante
+    ADD CONSTRAINT estudiante_pais_fk FOREIGN KEY ( idpais )
+        REFERENCES pais ( idpais );
+
+ALTER TABLE matricula
+    ADD CONSTRAINT matricula_estudiante_fk FOREIGN KEY ( dniest )
+        REFERENCES estudiante ( dniest );
+
+ALTER TABLE matricula
+    ADD CONSTRAINT matricula_grado_fk FOREIGN KEY ( idgrad )
+        REFERENCES grado ( idgrad );
+
+ALTER TABLE matricula
+    ADD CONSTRAINT matricula_seccion_fk FOREIGN KEY ( idsec )
+        REFERENCES seccion ( idsec )
+            ON DELETE CASCADE;
+
+ALTER TABLE parentesco
+    ADD CONSTRAINT parentesco_estudiante_fk FOREIGN KEY ( dniest )
+        REFERENCES estudiante ( dniest );
+
+ALTER TABLE parentesco
+    ADD CONSTRAINT parentesco_padres_fk FOREIGN KEY ( dnipad )
+        REFERENCES padres ( dnipad );
+
+CREATE SEQUENCE SEQ_CONTROL INCREMENT BY 1 START WITH 1 MAXVALUE 99999999999999999999999999999999999999 MINVALUE 1 CACHE 20;
+CREATE SEQUENCE SEQ_ESTUDIANTE INCREMENT BY 1 START WITH 1 MAXVALUE 99999999999999999999999999999999999999 MINVALUE 1 CACHE 20;
+CREATE SEQUENCE SEQ_GRADO INCREMENT BY 1 START WITH 1 MAXVALUE 99999999999999999999999999999999999999 MINVALUE 1 CACHE 20;
+CREATE SEQUENCE SEQ_MATRICULA INCREMENT BY 1 START WITH 1 MAXVALUE 99999999999999999999999999999999999999 MINVALUE 1 CACHE 20;
+CREATE SEQUENCE SEQ_PADRES INCREMENT BY 1 START WITH 1 MAXVALUE 99999999999999999999999999999999999999 MINVALUE 1 CACHE 20;
+CREATE SEQUENCE SEQ_PAIS INCREMENT BY 1 START WITH 1 MAXVALUE 99999999999999999999999999999999999999 MINVALUE 1 CACHE 20;
+CREATE SEQUENCE SEQ_PARENTESCO INCREMENT BY 1 START WITH 1 MAXVALUE 99999999999999999999999999999999999999 MINVALUE 1 CACHE 20;
+CREATE SEQUENCE SEQ_SECCION INCREMENT BY 1 START WITH 1 MAXVALUE 99999999999999999999999999999999999999 MINVALUE 1 CACHE 20;
+
+-- Informe de Resumen de Oracle SQL Developer Data Modeler: 
+-- 
+-- CREATE TABLE                             8
+-- CREATE INDEX                             0
+-- ALTER TABLE                             15
+-- CREATE VIEW                              0
+-- ALTER VIEW                               0
+-- CREATE PACKAGE                           0
+-- CREATE PACKAGE BODY                      0
+-- CREATE PROCEDURE                         0
+-- CREATE FUNCTION                          0
+-- CREATE TRIGGER                           0
+-- ALTER TRIGGER                            0
+-- CREATE COLLECTION TYPE                   0
+-- CREATE STRUCTURED TYPE                   0
+-- CREATE STRUCTURED TYPE BODY              0
+-- CREATE CLUSTER                           0
+-- CREATE CONTEXT                           0
+-- CREATE DATABASE                          0
+-- CREATE DIMENSION                         0
+-- CREATE DIRECTORY                         0
+-- CREATE DISK GROUP                        0
+-- CREATE ROLE                              0
+-- CREATE ROLLBACK SEGMENT                  0
+-- CREATE SEQUENCE                          0
+-- CREATE MATERIALIZED VIEW                 0
+-- CREATE MATERIALIZED VIEW LOG             0
+-- CREATE SYNONYM                           0
+-- CREATE TABLESPACE                        0
+-- CREATE USER                              0
+-- 
+-- DROP TABLESPACE                          0
+-- DROP DATABASE                            0
+-- 
+-- REDACTION POLICY                         0
+-- 
+-- ORDS DROP SCHEMA                         0
+-- ORDS ENABLE SCHEMA                       0
+-- ORDS ENABLE OBJECT                       0
+-- 
+-- ERRORS                                   0
+-- WARNINGS                                 0
