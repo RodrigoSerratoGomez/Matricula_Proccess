@@ -1,10 +1,12 @@
 package usmp.software.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -99,5 +101,28 @@ public class Padres implements Serializable {
         SUEMENPAD = sUEMENPAD;
     }
 
-    //RELACION CON PARENTESCO
+    // RELACION CON PARENTESCO
+    @OneToMany(mappedBy = "padres")
+    private List<Parentesco> parentescos;
+
+    public List<Parentesco> getParentescos() {
+        return this.parentescos;
+    }
+
+    public void setParentescos(List<Parentesco> parentescos) {
+        this.parentescos = parentescos;
+    }
+
+    public Parentesco addParentesco(Parentesco parentesco) {
+        getParentescos().add(parentesco);
+        parentesco.setPadres(this);
+        return parentesco;
+    }
+
+    public Parentesco removeParentesco(Parentesco parentesco) {
+        getParentescos().remove(parentesco);
+        parentesco.setPadres(null);
+        return parentesco;
+    }
+
 }

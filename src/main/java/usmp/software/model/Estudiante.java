@@ -122,4 +122,28 @@ public class Estudiante implements Serializable {
         return control;
     }
 
+    // RELACION CON PARENTESCO
+    @OneToMany(mappedBy = "estudiante")
+    private List<Parentesco> parentescos;
+
+    public List<Parentesco> getParentescos() {
+        return this.parentescos;
+    }
+
+    public void setParentescos(List<Parentesco> parentescos) {
+        this.parentescos = parentescos;
+    }
+
+    public Parentesco addParentesco(Parentesco parentesco) {
+        getParentescos().add(parentesco);
+        parentesco.setEstudiante(this);
+        return parentesco;
+    }
+
+    public Parentesco removeParentesco(Parentesco parentesco) {
+        getParentescos().remove(parentesco);
+        parentesco.setEstudiante(null);
+        return parentesco;
+    }
+
 }
