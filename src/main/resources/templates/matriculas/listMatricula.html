@@ -46,6 +46,10 @@
                                 <a th:href="@{/matriculas/edit/{id} (id=${matricula.IDMAT})}"
                                     class="btn btn-success btn-sm" role="button" title="Editar el registro."><i
                                         class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                                <a th:href="@{/matriculas/delete/{id} (id=${matricula.IDMAT})}"
+                                    onclick="return confirm('¿Esta seguro?')" class="btn btn-danger btn-sm"
+                                    role="button" title="Eliminar el registro."><i class="fas fa-trash"
+                                        aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     </tbody>

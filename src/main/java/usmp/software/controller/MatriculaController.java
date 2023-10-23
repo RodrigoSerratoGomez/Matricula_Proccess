@@ -21,60 +21,65 @@ import usmp.software.service.IMatriculaService;
 import usmp.software.service.ISeccionService;
 
 @Controller
-@RequestMapping(value="/matriculas")
+@RequestMapping(value = "/matriculas")
 public class MatriculaController {
-    
-    @Autowired
+
+	@Autowired
 	private IMatriculaService serviceMatricula;
-	
+
 	@Autowired
 	private IEstudianteService serviceEstudiante;
 
-    @Autowired
+	@Autowired
 	private IGradoService serviceGrado;
 
-    @Autowired
+	@Autowired
 	private ISeccionService serviceSeccion;
-		
+
 	@GetMapping("/index")
-	public String mostrarIndex(Model model){
+	public String mostrarIndex(Model model) {
 		List<Matricula> lista = serviceMatricula.buscarTodas();
-	    model.addAttribute("matriculas", lista);
-	    return"matriculas/listMatricula";
+		model.addAttribute("matriculas", lista);
+		return "matriculas/listMatricula";
 	}
-	
+
 	@GetMapping("/create")
-	public String crear(Matricula matricula){
-	    return"matriculas/formMatricula";
+	public String crear(Matricula matricula) {
+		return "matriculas/formMatricula";
 	}
-	
+
 	@PostMapping("/save")
-	public String guardar(Matricula matricula, BindingResult result, RedirectAttributes attributes){
-		if(result.hasErrors()) {
-			for(ObjectError error:result.getAllErrors()){
-				   System.out.println("Ocurrio un error: " + error.getDefaultMessage());
+	public String guardar(Matricula matricula, BindingResult result, RedirectAttributes attributes) {
+		if (result.hasErrors()) {
+			for (ObjectError error : result.getAllErrors()) {
+				System.out.println("Ocurrio un error: " + error.getDefaultMessage());
 			}
-			return"matriculas/formMatricula";
+			return "matriculas/formMatricula";
 		}
 		serviceMatricula.guardar(matricula);
-		attributes.addFlashAttribute("msg","Registro Guardado");
-		return"redirect:/matriculas/index";
+		attributes.addFlashAttribute("msg", "Registro Guardado");
+		return "redirect:/matriculas/index";
 	}
-	
-    //TODO Eliminar
-	
+
+	@GetMapping("/delete/{id}")
+	public String eliminar(@PathVariable("id") Long idMatricula, RedirectAttributes attributes) {
+		serviceMatricula.eliminar(idMatricula);
+		attributes.addFlashAttribute("msg", "Registro Eliminado");
+		return "redirect:/matriculas/index";
+	}
+
 	@GetMapping("/edit/{id}")
-	public String editar(@PathVariable("id") Long idMatricula, Model model){
+	public String editar(@PathVariable("id") Long idMatricula, Model model) {
 		Matricula matricula = serviceMatricula.buscarPorId(idMatricula);
-	    model.addAttribute("matricula", matricula);
-	    return"matriculas/formMatricula";
+		model.addAttribute("matricula", matricula);
+		return "matriculas/formMatricula";
 	}
-	
+
 	@ModelAttribute
 	public void setGenericos(Model model) {
-		model.addAttribute("estudiantes", serviceEstudiante.buscarTodas()); 
-		model.addAttribute("grados", serviceGrado.buscarTodas()); 
-		model.addAttribute("secciones", serviceSeccion.buscarTodas()); 
+		model.addAttribute("estudiantes", serviceEstudiante.buscarTodas());
+		model.addAttribute("grados", serviceGrado.buscarTodas());
+		model.addAttribute("secciones", serviceSeccion.buscarTodas());
 	}
 
 }

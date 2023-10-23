@@ -37,5 +37,9 @@ public class MatriculaServiceJpa implements IMatriculaService{
 		return null;
 	}
 
-    //TODO Eliminar
+    @Override
+	public void eliminar(Long idMatricula) {
+		matriculasRepo.deleteById(idMatricula);
+	}
+	
 }

@@ -12,5 +12,6 @@ public interface IMatriculaService {
 
     Matricula buscarPorId(Long idMatricula);
 
-    //TODO Eliminar
+    void eliminar(Long idMatricula);
+
 }
