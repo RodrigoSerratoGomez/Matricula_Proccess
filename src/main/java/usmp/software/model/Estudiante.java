@@ -146,4 +146,28 @@ public class Estudiante implements Serializable {
         return parentesco;
     }
 
+    // RELACION CON MATRICULA
+    @OneToMany(mappedBy = "estudiante")
+    private List<Matricula> matriculas;
+
+    public List<Matricula> getMatriculas() {
+        return this.matriculas;
+    }
+
+    public void setMatriculas(List<Matricula> matriculas) {
+        this.matriculas = matriculas;
+    }
+
+    public Matricula addMatricula(Matricula matricula) {
+        getMatriculas().add(matricula);
+        matricula.setEstudiante(this);
+        return matricula;
+    }
+
+    public Matricula removeMatricula(Matricula matricula) {
+        getMatriculas().remove(matricula);
+        matricula.setEstudiante(null);
+        return matricula;
+    }
+
 }

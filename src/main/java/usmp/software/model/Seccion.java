@@ -1,12 +1,14 @@
 package usmp.software.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -41,6 +43,28 @@ public class Seccion implements Serializable {
         NOMSEC = nOMSEC;
     }
 
-    // TODO RELACION CON MATRICULA
+    // RELACION CON MATRICULA
+    @OneToMany(mappedBy = "seccion")
+    private List<Matricula> matriculas;
+
+    public List<Matricula> getMatriculas() {
+        return this.matriculas;
+    }
+
+    public void setMatriculas(List<Matricula> matriculas) {
+        this.matriculas = matriculas;
+    }
+
+    public Matricula addMatricula(Matricula matricula) {
+        getMatriculas().add(matricula);
+        matricula.setSeccion(this);
+        return matricula;
+    }
+
+    public Matricula removeMatricula(Matricula matricula) {
+        getMatriculas().remove(matricula);
+        matricula.setSeccion(null);
+        return matricula;
+    }
     
 }

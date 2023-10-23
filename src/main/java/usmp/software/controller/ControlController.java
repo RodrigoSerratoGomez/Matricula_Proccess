@@ -50,7 +50,6 @@ public class ControlController {
 		}
 		serviceControl.guardar(control);
 		attributes.addFlashAttribute("msg","Registro Guardado");
-		System.out.println("Control: " + control);
 		return"redirect:/controles/index";
 	}
 	
