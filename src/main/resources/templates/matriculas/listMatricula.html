@@ -32,6 +32,7 @@
                             <th scope="col">DNI Estudiante</th>
                             <th scope="col">Grado Escolar</th>
                             <th scope="col">Sección Escolar</th>
+                            <th scope="col">Operaciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,6 +42,11 @@
                             <td th:text="${matricula.estudiante.DNIEST}"></td>
                             <td th:text="${matricula.grado.NOMGRAD}"></td>
                             <td th:text="${matricula.seccion.NOMSEC}"></td>
+                            <td>
+                                <a th:href="@{/matriculas/edit/{id} (id=${matricula.IDMAT})}"
+                                    class="btn btn-success btn-sm" role="button" title="Editar el registro."><i
+                                        class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

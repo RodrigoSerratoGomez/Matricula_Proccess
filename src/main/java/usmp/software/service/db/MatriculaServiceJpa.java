@@ -1,6 +1,7 @@
 package usmp.software.service.db;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -27,7 +28,14 @@ public class MatriculaServiceJpa implements IMatriculaService{
 		return matriculasRepo.findAll();
 	}
 
-    //TODO Modificar
+    @Override
+	public Matricula buscarPorId(Long idMatricula) {
+		Optional<Matricula> optional = matriculasRepo.findById(idMatricula);
+		if(optional.isPresent()) {
+			return optional.get();
+		}
+		return null;
+	}
 
     //TODO Eliminar
 }

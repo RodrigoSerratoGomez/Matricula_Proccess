@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -60,9 +61,14 @@ public class MatriculaController {
 		return"redirect:/matriculas/index";
 	}
 	
-	//TODO Modificar
-
     //TODO Eliminar
+	
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable("id") Long idMatricula, Model model){
+		Matricula matricula = serviceMatricula.buscarPorId(idMatricula);
+	    model.addAttribute("matricula", matricula);
+	    return"matriculas/formMatricula";
+	}
 	
 	@ModelAttribute
 	public void setGenericos(Model model) {

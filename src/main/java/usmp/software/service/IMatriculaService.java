@@ -10,7 +10,7 @@ public interface IMatriculaService {
 
     List<Matricula> buscarTodas();
 
-    //TODO Modificar
+    Matricula buscarPorId(Long idMatricula);
 
     //TODO Eliminar
 }
