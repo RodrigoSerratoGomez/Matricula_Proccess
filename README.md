@@ -114,5 +114,6 @@ Dentro de este apartado mostraremos los pasos necesarios para poder realizar la 
     * Por último, ingresamos a nuestro browser favorito y accesamos a nuestro sitio web bajo la dirección de `http://localhost:8080`
 
 ## Credenciales de Acceso a la Plataforma
-    * Username: `UserMatricula`
-    * Password: `12345678`
+
+* Username: `UserMatricula`
+* Password: `12345678`
