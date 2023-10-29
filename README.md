@@ -2,6 +2,8 @@
 
 Dentro de este apartado mostraremos los pasos necesarios para poder realizar la instalación del proyecto ``"Matricula Proccess"`` localmente.
 
+![Alt text](image-1.png)
+
 ## Instalación de Software
 
 1. JDK 17 -> [Sitio Oficial](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) | [Descargar](https://download.oracle.com/java/17/archive/jdk-17.0.9_windows-x64_bin.exe)
