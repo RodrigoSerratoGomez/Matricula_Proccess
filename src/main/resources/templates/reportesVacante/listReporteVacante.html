@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Pais-Formulario</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+</head>
+
+<body style="background-color: #E5E7E9">
+
+    <header th:insert="fragments/header :: header-principal"></header>
+
+    <br><br><br>
+    <div class="container col-md-5">
+        <div class="card border-dark">
+            <h4 class="card-header"><strong>Reporte de Vacantes</strong></h4>
+            <div class="card-body">
+                <a class="btn btn-dark" th:href="@{/reportesMatricula}" title="Crear Nuevo Estudiante"
+                    role="button">Ir a Reporte de Matrículas</a>
+                <hr>
+                <div th:if="${msg!=null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+                <table class="table table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">X1</th>
+                            <th scope="col">X2</th>
+                            <th scope="col">X3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>A1</td>
+                            <td>A2</td>
+                            <td>A3</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+
+    <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
