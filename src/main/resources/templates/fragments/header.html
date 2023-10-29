@@ -1,14 +1,53 @@
-<nav th:fragment="header-principal" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" th:href="@{/}">Institución Educativa Emblematica Daniel Becerra Ocampo</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-      </li>
-    </ul>
+<nav th:fragment="header-principal" class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" th:href="@{/}">I.E. Daniel Becerra Ocampo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Listados
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" th:href="@{/matriculas/index}">Matrículas</a></li>
+            <li><a class="dropdown-item" th:href="@{/estudiantes/index}">Estudiantes</a></li>
+            <li><a class="dropdown-item" th:href="@{/padres/index}">Padres o Tutores</a></li>
+            <li><a class="dropdown-item" th:href="@{/parentescos/index}">Parentescos</a></li>
+            <li><a class="dropdown-item" th:href="@{/controles/index}">Controles</a></li>
+            <li><a class="dropdown-item" th:href="@{/grado/index}">Grados</a></li>
+            <li><a class="dropdown-item" th:href="@{/pais/index}">Paises</a></li>
+            <li><a class="dropdown-item" th:href="@{/seccion/index}">Secciones</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Registros
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" th:href="@{/matriculas/create}">Matrículas</a></li>
+            <li><a class="dropdown-item" th:href="@{/estudiantes/create}">Estudiantes</a></li>
+            <li><a class="dropdown-item" th:href="@{/padres/create}">Padres o Tutores</a></li>
+            <li><a class="dropdown-item" th:href="@{/parentescos/create}">Parentescos</a></li>
+            <li><a class="dropdown-item" th:href="@{/controles/create}">Controles</a></li>
+            <li><a class="dropdown-item" th:href="@{/grado/create}">Grados</a></li>
+            <li><a class="dropdown-item" th:href="@{/pais/create}">Paises</a></li>
+            <li><a class="dropdown-item" th:href="@{/seccion/create}">Secciones</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Reportes
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" th:href="@{/reportesMatricula}">Matricula</a></li>
+            <li><a class="dropdown-item" th:href="@{/reportesVacante}">Vacantes</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <a class="btn btn-light" th:href="@{/logout}">Cerrar Sesión</a>&nbsp;
   </div>
 </nav>

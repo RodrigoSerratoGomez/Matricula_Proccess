@@ -112,3 +112,7 @@ Dentro de este apartado mostraremos los pasos necesarios para poder realizar la 
     * Nos dirigimos a VS Code dentro de nuestro proyecto y nos dirigimos a la barra lateral izquiera en donde se encuentran nuestras extensiones, dentro de los iconos se encontrará la extensión de `Spring Boot Dashboard`, ingresamos y se nos presentarán 3 apartados, escogemos el apartado `APPS` y dentro de el encontraremos nuestro `software` el cual poseerá la opción `Run` dado por un ícono de `play`.
 
     * Por último, ingresamos a nuestro browser favorito y accesamos a nuestro sitio web bajo la dirección de `http://localhost:8080`
+
+## Credenciales de Acceso a la Plataforma
+    * Username: `UserMatricula`
+    * Password: `12345678`
